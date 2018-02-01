@@ -1,0 +1,19 @@
+#!/bin/bash
+
+NAME=${NAME:-unifi}
+
+echo "- Destroying the droplets"
+# delete the droplets
+doctl compute droplet delete -f "${NAME}"
+
+echo "- Destroying the tags"
+# delete the tags
+doctl compute tag delete -f unifi
+
+echo "- Destroying the node firewall"
+FW_ID=$(doctl compute firewall list | grep "unifi" | cut -d' ' -f1)
+if [ -n "${FW_ID}" ]; then
+    doctl compute firewall delete "${FW_ID}" -f
+fi
+
+echo "- Destroy completed"
