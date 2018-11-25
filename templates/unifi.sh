@@ -16,8 +16,7 @@ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv A15703C6
 echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.4 multiverse" > /etc/apt/sources.list.d/mongodb-org-3.4.list
 
 # unifi
-apt-key adv --keyserver keyserver.ubuntu.com --recv C0A52C50
-#apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
+apt-key adv --keyserver keyserver.ubuntu.com --recv 06E85760C0A52C50
 echo "deb http://www.ubnt.com/downloads/unifi/debian stable ubiquiti" > /etc/apt/sources.list.d/ubnt.list
 
 apt-get update
@@ -29,8 +28,8 @@ systemctl enable mongod
 systemctl start haveged
 systemctl enable haveged
 
-UNIFI_VERSION=5.8.24
-wget https://www.ubnt.com/downloads/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb
+UNIFI_VERSION=5.9.29
+wget https://dl.ubnt.com/unifi/${UNIFI_VERSION}/unifi_sysvinit_all.deb
 dpkg --install unifi_sysvinit_all.deb
 apt-get install -f -y
 apt autoremove
